@@ -1,5 +1,5 @@
 import uuid from 'react-native-uuid';
-import {LikelihoodState} from '../../enum/LikelihoodState';
+import {LikelihoodCalculationState} from '../../enum/LikelihoodCalculationState';
 
 import {IAnt} from '../../interfaces/IAnt';
 import {IAntLikelihoodRankingItem} from '../../interfaces/IAntRankingItem';
@@ -12,7 +12,7 @@ export const mapAntsToLikelihoodRankingItems = (
         ant,
         id: uuid.v4().toString(),
         likelihood: 0,
-        likelihoodState: LikelihoodState.NOT_YET_RUN,
+        calculationState: LikelihoodCalculationState.NOT_YET_RUN,
       }))
     : [];
 };

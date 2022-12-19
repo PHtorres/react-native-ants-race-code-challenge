@@ -1,9 +1,9 @@
-import {LikelihoodState} from '../enum/LikelihoodState';
+import {LikelihoodCalculationState} from '../enum/LikelihoodCalculationState';
 import {IAnt} from './IAnt';
 
 export interface IAntLikelihoodRankingItem {
   id: string;
   likelihood: number;
-  likelihoodState: LikelihoodState;
+  calculationState: LikelihoodCalculationState;
   ant: IAnt;
 }

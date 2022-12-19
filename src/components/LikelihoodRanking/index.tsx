@@ -1,8 +1,8 @@
-import React, {useCallback, useId} from 'react';
-import {View, Text, FlatList, ListRenderItemInfo} from 'react-native';
+import React, {useCallback} from 'react';
+import {View, FlatList, ListRenderItemInfo} from 'react-native';
 import {IAntLikelihoodRankingItem} from '../../interfaces/IAntRankingItem';
-
-// import { Container } from './styles';
+import {AntLikelihoodRankingItem} from '../AntLikelihoodRankingItem';
+import {sortRanking} from './utils';
 
 const RANKING_ITEMS_SEPARATOR_HEIGHT = 10;
 
@@ -13,18 +13,14 @@ interface Props {
 export const LikelihoodRanking = ({antLikelihoodRankingItems}: Props) => {
   const renderAntRankingItem = useCallback(
     ({item, index}: ListRenderItemInfo<IAntLikelihoodRankingItem>) => (
-      <View>
-        <Text>{index + 1}</Text>
-        <Text>{item.ant.name}</Text>
-        <Text>{item.likelihood}</Text>
-        <Text>{item.likelihoodState.toString()}</Text>
-      </View>
+      <AntLikelihoodRankingItem item={item} position={index + 1} />
     ),
     [],
   );
+
   return (
     <FlatList
-      data={antLikelihoodRankingItems}
+      data={antLikelihoodRankingItems.sort(sortRanking)}
       keyExtractor={item => item.id}
       renderItem={renderAntRankingItem}
       ItemSeparatorComponent={() => (
